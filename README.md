@@ -1,6 +1,6 @@
-to open my project use http://54.88.29.132/login
-to intery to the machine use file of: a_key(in link of google dirve "https://drive.google.com/file/d/12Hp5P5kMtStREFVKA1kHQkKR-8dix1my/view") , password: 12345 
-write in terminal >> ssh -i a_key grader@54.88.29.132 -p 2200 password "12345"
+#to open my project use http://54.88.29.132/login
+#to intery to the machine use file of: a_key(in link of google dirve "https://drive.google.com/file/d/12Hp5P5kMtStREFVKA1kHQkKR-8dix1my/view") , password: 12345 
+#write in terminal >> ssh -i a_key grader@54.88.29.132 -p 2200 password "12345"
 /////////////////////////////////////////////////////////
 # Linux-server-configration
 ** public_ip: 54.88.29.132 **
