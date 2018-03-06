@@ -1,6 +1,7 @@
 # to open my project use "http://54.88.29.132/login"
 # to intery to the machine useing file of: authorized_keys
-   write in terminal >> ssh -i a_key grader@54.88.29.132 -p 2200 >> password "12345"
+   1- download the a_key file in your machine 
+   2- write in terminal >> ssh -i a_key grader@54.88.29.132 -p 2200 >> password "12345"
 /////////////////////////////////////////////////////////
 # Linux-server-configration
 ** public_ip: 54.88.29.132 **
@@ -17,7 +18,7 @@ in your vpn terminal write "sudo adduser grader"
 "nano /etc/sudoers.d/grader" >> write "grader ALL=(ALL:ALL) ALL" in file 
 then change the dirctory to grader by wirte "su - grader"
 //////////////////////////////////////
-#to make more secure 
+#  to make more secure 
 
 write "ssh-keygen" in your local machine , then entered the file name , you will get 2 files (the_file_name) & (the_file_name.pub)
 go to the (the_file_name.pub) data by using nano or ant editor and copy it
@@ -26,15 +27,15 @@ go to your vpn and write this in the terminal
   "mkdir .ssh"
   "touch .ssh/authorized_keys"
   "nano .ssh/authorized_keys"
-#past the *.pub* file in the *authorized_keys* file and exit it
-#change the file permissions by write
+#  past the *.pub* file in the *authorized_keys* file and exit it
+#  change the file permissions by write
   "chmod 700 .ssh"
   "chmod 644 .ssh/authorized_keys"
   "service ssh restart"
 
-#in your machine now you can ssh connect to your instance using line ssh -i <the_file_name_in_.ssh>grader@<public_ip> or by just ssh -v grader@<public_ip> and the os will look for the file in .ssh folder
+#  in your machine now you can ssh connect to your instance using line ssh -i <the_file_name_in_.ssh>grader@<public_ip> or by just ssh -v grader@<public_ip> and the os will look for the file in .ssh folder
 //////////////////////////////////////////
-#Change ssh default port and add UFW
+#  Change ssh default port and add UFW
 
   "nano sudo vim /etc/ssh/sshd_config" in this file change>> port 2200 or any availabe number
   then exit sudo service ssh restart
@@ -46,18 +47,18 @@ go to your vpn and write this in the terminal
   "sudo ufw allow 2200/tcp"
   "sudo ufw allow 123/udp"
   "sudo ufw enable"
-#Update & Upgrade & edit timezone
+#  Update & Upgrade & edit timezone
   "sudo apt-get update"
   "sudo apt-get upgrade"
   "sudo dpkg-reconfigure tzdata">> choose utc for example
 
-#install apache2 & python wsgi
+#  install apache2 & python wsgi
   "sudo apt-get install apache2"
   "sudo apt-get install libapache2-mod-wsgi"
   "sudo service apache2 restart"
   
-#check your public_ip in the browser ( you will get apache2 default page)
-#install postgres & create the database
+#  check your public_ip in the browser ( you will get apache2 default page)
+#  install postgres & create the database
   "sudo apt-get install postgresql"
 
   "sudo su - postgres" change to postgres user
@@ -71,7 +72,7 @@ go to your vpn and write this in the terminal
     -GRANT ALL PRIVILEGES ON DATABASE data TO alaa;
 /////////////////////////////////////////////////////////
 
-#Install git, clone and setup your Catalog App project.
+#  Install git, clone and setup your Catalog App project.
     1-Install Git using sudo apt-get install git
     2-Use cd /var/www to move to the /var/www directory
     3-Create the application directory sudo mkdir FlaskApp
@@ -86,7 +87,7 @@ go to your vpn and write this in the terminal
     12-Install psycopg2 sudo apt-get -qqy install postgresql python-psycopg2
     13-Create database schema sudo python database_setup.py
 //////////////////////////////////////////////////////////////////
-#create .config file and wsgi file
+#  create .config file and wsgi file
   "sudo nano /etc/apache2/sites-available/Website.conf"
 
     then write :
@@ -109,9 +110,9 @@ go to your vpn and write this in the terminal
             CustomLog ${APACHE_LOG_DIR}/access.log combined
     </VirtualHost>
 
-  "sudo a2ensite Website" for enable it
+  #   "sudo a2ensite Website" for enable it
 
-add wsgi file in your Website folder write : "sudo nano website.wsgi" then past this :
+#  add wsgi file in your Website folder write : "sudo nano website.wsgi" then past this :
     #!/usr/bin/python
     import sys
     import logging
@@ -126,4 +127,4 @@ add wsgi file in your Website folder write : "sudo nano website.wsgi" then past 
     restart apache then check (your_server_dns_or_ip).
     sudo service restart apache2
 
-if you get error check : "sudo tail -f /var/log/apache2/error.log"
+# if you get error check : "sudo tail -f /var/log/apache2/error.log"
